@@ -15,100 +15,90 @@ import matplotlib.pyplot as plt
 
 def pre_processing(train_path, test_path):
     """
-    Funzione per il pre-processing del dataset sull'obesità.
+    Performs preprocessing for the obesity dataset.
     
     Args:
-        train_path: percorso al file CSV di training
-        test_path: percorso al file CSV di test
+        train_path: Path to training CSV file
+        test_path: Path to test CSV file
         
-    Returns:
-        X_train_selected: features di training processate
-        y_train: target di training (convertito in interi)
-        X_val: features di validation
-        y_val: target di validation (convertito in interi)
-        X_test_selected: features di test processate
-        test_df: dataframe originale di test (per mantenere gli ID)
-        weight_map: mappatura delle classi
+    Returns (in this exact order):
+        X_train_scaled: Scaled training features (StandardScaler)
+        y_train: Training target (converted to integers)
+        X_val_scaled: Scaled validation features  
+        y_val: Validation target (converted to integers)
+        X_test_scaled: Scaled test features
+        test_df: Original test dataframe (to preserve IDs)
+        weight_map: Class label mapping dictionary
     """
-    # === 1. Caricamento dati ===
+    # === 1. Data Loading ===
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
     
-    # === 2. Pulizia dati ===
+    # === 2. Null Value Handling ===
     train_df = train_df.dropna()
     test_df = test_df.dropna()
     
-    # === 3. Mappatura target ===
+    # === 3. Target Encoding ===
     weight_map = {
         'Normal_Weight': 1,
-        'Insufficient_Weight': 0,
+        'Insufficient_Weight': 0, 
         'Overweight_Level_I': 2,
         'Overweight_Level_II': 3,
         'Obesity_Type_I': 4,
         'Obesity_Type_II': 5,
         'Obesity_Type_III': 6
     }
-    
-    train_df['NObeyesdad'] = train_df['NObeyesdad'].map(weight_map).astype(int)  # Forziamo interi
-    
-    # === 4. Codifica colonne booleane (yes/no -> True/False) ===
+    # Force integer conversion for classification
+    train_df['NObeyesdad'] = train_df['NObeyesdad'].map(weight_map).astype(int)  
+
+    # === 4. Boolean Encoding (yes/no → True/False) ===
     for df in [train_df, test_df]:
         df.replace({'yes': True, 'no': False}, inplace=True)
-        df.infer_objects(copy=False)
-        
-        # === 5. Creazione feature BMI ===
-        df['BMI'] = df['Weight'] / (df['Height'] ** 2)  # Altezza già in metri nel dataset
-    
-    # === 6. Codifica colonne categoriche ===
+        df.infer_objects(copy=False)  # Auto-type conversion
+
+    # === 5. Categorical Feature Encoding ===
     categorical_cols = train_df.select_dtypes(include='object').columns
-    label_encoders = {}
     
-    # Codifica colonne presenti sia in train che test
-    common_categorical_cols = [col for col in categorical_cols if col in test_df.columns]
-    
-    for col in common_categorical_cols:
-        le = LabelEncoder()
-        train_df[col] = le.fit_transform(train_df[col].astype(str))
-        
-        # Gestione valori sconosciuti in test
-        test_df[col] = test_df[col].astype(str)
-        test_df[col] = test_df[col].apply(lambda x: x if x in le.classes_ else 'unknown')
-        
-        if 'unknown' not in le.classes_:
-            le.classes_ = np.append(le.classes_, 'unknown')
-        test_df[col] = le.transform(test_df[col])
-        label_encoders[col] = le
-    
-    # === 7. Separazione features/target ===
+    for col in categorical_cols:
+        if col in test_df.columns:  # Only encode columns present in both datasets
+            le = LabelEncoder()
+            train_df[col] = le.fit_transform(train_df[col].astype(str))
+            
+            # Handle unseen test categories (e.g., 'unknown')
+            test_df[col] = test_df[col].astype(str)
+            mask = ~test_df[col].isin(le.classes_)
+            test_df.loc[mask, col] = 'unknown'
+            
+            if 'unknown' not in le.classes_:
+                le.classes_ = np.append(le.classes_, 'unknown')
+            test_df[col] = le.transform(test_df[col])
+
+    # === 6. Feature/Target Separation ===
     X = train_df.drop(columns=['id', 'NObeyesdad'])
-    y = train_df['NObeyesdad'].astype(int)  # Garantiamo che sia intero
-    
-    # === 8. Split train/validation ===
+    y = train_df['NObeyesdad'].astype(int)  # Ensure integer type
+
+    # === 7. Train/Validation Split ===
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, 
         test_size=0.2, 
         random_state=42
     )
-    
-    # === 9. Normalizzazione ===
+
+    # === 8. Feature Scaling (StandardScaler) ===
     scaler = StandardScaler()
-    X_train_scaled = scaler.fit_transform(X_train)
+    X_train_scaled = scaler.fit_transform(X_train)  # Fit only on training data
     X_val_scaled = scaler.transform(X_val)
-    
-    # Processamento test set
-    X_test = test_df.drop(columns=['id', 'NObeyesdad'], errors='ignore')
-    X_test_scaled = scaler.transform(X_test)
-    
-    # === 10. Preparazione output ===
-    # Restituiamo i dati NON scalati per XGBoost (lavora meglio con dati non normalizzati)
-    X_train_selected = X_train.copy()
-    X_test_selected = X_test[X_train_selected.columns]  # Allineamento colonne
-    
-    # Verifica finale
+    X_test_scaled = scaler.transform(test_df.drop(columns=['id', 'NObeyesdad'], errors='ignore'))
+
+    # === 9. Test Feature Alignment ===
+    # Ensure test data has same columns as training data after encoding
+    X_test_scaled = pd.DataFrame(X_test_scaled, columns=X_train.columns)
+
+    # === 10. Final Checks ===
     assert not y_train.isnull().any(), "Error: y_train contains NaN values"
     assert not y_val.isnull().any(), "Error: y_val contains NaN values"
     
-    return X_train_selected, y_train, X_val, y_val, X_test_selected, test_df, weight_map
+    return X_train_scaled, y_train, X_val_scaled, y_val, X_test_scaled, test_df, weight_map
 
 def modelling(X_train_selected, y_train, X_val, y_val, X_test_selected, test_df, weight_map, output_path=None):
     """
@@ -149,7 +139,6 @@ def modelling(X_train_selected, y_train, X_val, y_val, X_test_selected, test_df,
     # === Evaluate on validation set ===
     y_pred_xgb = best_model.predict(X_val)
 
-    # No need for probability handling here, since `multi:softmax` will directly give predicted class labels
     accuracy = accuracy_score(y_val, y_pred_xgb)
 
     # Prepare readable class names
@@ -191,5 +180,4 @@ if __name__ == "__main__":
     # Modellazione e predizione
     output, model = modelling(X_train, y_train, X_val, y_val, X_test, test_df, weight_map, output_path)
     
-    print("Processo completato con successo!")
-    
+    print("Process succesfully completed!")
