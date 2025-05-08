@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predizione Obesità</title>
+</head>
+<body>
+    <h2>Inserisci i tuoi dati</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+                {{ field.label_tag }}<br>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit">Predici</button>
+    </form>
+
+    {% if prediction %}
+        <h3>Risultato: {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
