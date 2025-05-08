@@ -11,6 +11,8 @@ from sklearn.model_selection import GridSearchCV
 from xgboost import plot_importance,XGBClassifier
 import seaborn as sns
 import matplotlib.pyplot as plt
+import joblib
+import json
 
 
 def pre_processing(train_path, test_path):
@@ -72,11 +74,14 @@ def pre_processing(train_path, test_path):
             if 'unknown' not in le.classes_:
                 le.classes_ = np.append(le.classes_, 'unknown')
             test_df[col] = le.transform(test_df[col])
+            
+            # Salva encoder
+            joblib.dump(le, f'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/{col}_encoder.pkl')
 
     # === 6. Feature/Target Separation ===
     X = train_df.drop(columns=['id', 'NObeyesdad'])
     y = train_df['NObeyesdad'].astype(int)  # Ensure integer type
-
+    feature_names = X.columns.tolist()
     # === 7. Train/Validation Split ===
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, 
@@ -89,7 +94,8 @@ def pre_processing(train_path, test_path):
     X_train_scaled = scaler.fit_transform(X_train)  # Fit only on training data
     X_val_scaled = scaler.transform(X_val)
     X_test_scaled = scaler.transform(test_df.drop(columns=['id', 'NObeyesdad'], errors='ignore'))
-
+    joblib.dump(scaler, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/scaler.pkl')
+    
     # === 9. Test Feature Alignment ===
     # Ensure test data has same columns as training data after encoding
     X_test_scaled = pd.DataFrame(X_test_scaled, columns=X_train.columns)
@@ -98,7 +104,7 @@ def pre_processing(train_path, test_path):
     assert not y_train.isnull().any(), "Error: y_train contains NaN values"
     assert not y_val.isnull().any(), "Error: y_val contains NaN values"
     
-    return X_train_scaled, y_train, X_val_scaled, y_val, X_test_scaled, test_df, weight_map
+    return X_train_scaled, y_train, X_val_scaled, y_val, X_test_scaled, test_df, weight_map,feature_names
 
 def modelling(X_train_selected, y_train, X_val, y_val, X_test_selected, test_df, weight_map, output_path=None):
     """
@@ -163,6 +169,8 @@ def modelling(X_train_selected, y_train, X_val, y_val, X_test_selected, test_df,
 
     print("\n📊 Sample predictions (first 10 rows):")
     print(output.head(10))
+    
+    
 
     return output, best_model
 
@@ -170,14 +178,22 @@ def modelling(X_train_selected, y_train, X_val, y_val, X_test_selected, test_df,
 # Example usage of functions
 if __name__ == "__main__":
     # Define file paths
-    train_path = "train.csv"
-    test_path = "test.csv"
-    output_path = "predizioni_obesita.csv"
+    train_path = "C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/DatiCsv/train.csv"
+    test_path = "C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/DatiCsv/test.csv"
+    output_path = "C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/DatiCsv/predizioni_obesita.csv"
     
     # Pre-processing
-    X_train, y_train, X_val, y_val, X_test, test_df, weight_map = pre_processing(train_path, test_path)
+    X_train, y_train, X_val, y_val, X_test, test_df, weight_map,feature_names = pre_processing(train_path, test_path)
 
     # Modellazione e predizione
     output, model = modelling(X_train, y_train, X_val, y_val, X_test, test_df, weight_map, output_path)
     
+    # Salvataggio
+    scaler = StandardScaler()
+    scaler.fit(X_train)  # Fit con dati di training
+    joblib.dump(model, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/model_xgb.pkl')
+    joblib.dump(feature_names, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/feature_names.pkl')
+    with open('C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/class_map.json', 'w') as f:
+        json.dump({str(k): v for k, v in weight_map.items()}, f)
+        
     print("Process succesfully completed!")
