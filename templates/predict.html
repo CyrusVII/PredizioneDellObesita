@@ -1,32 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="lang-it">
-    <h3>Strumento di Predizione</h3>
-    <p>
-        In questa sezione puoi testare il nostro modello direttamente online.
-        Ti verrà chiesto di compilare un breve form con alcune informazioni.
-    </p>
-    <p>
-        Una volta inviato il modulo, i dati verranno automaticamente convertiti, normalizzati e processati. 
-        Il sistema effettuerà quindi una predizione classificando il tuo livello di obesità.
-    </p>
-    <p  style = "color: white;"><em>
-        ⚠️ Questo strumento ha uno scopo puramente didattico e non fornisce diagnosi mediche.
-    </em></p>
-</div>
 
-<div class="lang-en" style="display: none;" >
-    <h3>Prediction Tool</h3>
-    <p>
-        In this section, you can test our model live by filling out a short form with information,
-    </p>
-    <p>
-        Once submitted, your data is automatically converted, scaled, and processed. 
-        The system will then return your obesity level classification.
-    </p>
-    <p  style = "color: white;"><em>
-        ⚠️ This tool is for educational purposes only and does not provide medical diagnoses.
-    </em></p>
+<div class="mini-container container py-4"> 
+    <div class="lang-it">
+        <h3>🩺 Strumento di Predizione</h3>
+        <p>
+            In questa sezione puoi testare il nostro modello direttamente online.
+            Ti verrà chiesto di compilare un breve form con alcune informazioni.
+        </p>
+        <p>
+            Una volta inviato il modulo, i dati verranno automaticamente convertiti, normalizzati e processati. 
+            Il sistema effettuerà quindi una predizione classificando il tuo livello di obesità.
+        </p>
+        <p  style = "color: white;"><em>
+            ⚠️ Questo strumento ha uno scopo puramente didattico e non fornisce diagnosi mediche.
+        </em></p>
+    </div>
+
+    <div class="lang-en" style="display: none;" >
+        <h3>🩺 Prediction Tool</h3>
+        <p>
+            In this section, you can test our model live by filling out a short form with information,
+        </p>
+        <p>
+            Once submitted, your data is automatically converted, scaled, and processed. 
+            The system will then return your obesity level classification.
+        </p>
+        <p  style = "color: white;"><em>
+            ⚠️ This tool is for educational purposes only and does not provide medical diagnoses.
+        </em></p>
+    </div>
 </div>
 
 {% include "form.html" %}

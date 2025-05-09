@@ -1,51 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="lang-it">
-    <h3>Visualizzazione dei Dati</h3>
-    <p>Ecco tre grafici rappresentativi del processo di modellazione e analisi dei dati:</p>
+<div class="mini-container container py-4"> 
+    <div class="lang-it">
+        <h3>Visualizzazione dei Dati</h3>
+        <p>Ecco tre grafici rappresentativi del processo di modellazione e analisi dei dati:</p>
 
-    <h5>1. Distribuzione delle Classi (Target)</h5>
-    <p>
-        Grafico a barre che mostra la quantità di individui per ciascuna categoria di peso: da "Insufficient Weight" a "Obesity Type III".
-        Utile per evidenziare eventuali squilibri nel dataset.
-    </p>
+        <h5>1. Distribuzione delle Classi (Target)</h5>
+        <p>
+            Grafico a barre che mostra la quantità di individui per ciascuna categoria di peso: da "Insufficient Weight" a "Obesity Type III".
+            Utile per evidenziare eventuali squilibri nel dataset.
+        </p>
 
-    <h5>2. Feature Importance (XGBoost)</h5>
-    <p>
-        Grafico generato da XGBoost che evidenzia le variabili più influenti nella predizione, 
-        come <em>Weight</em>, <em>Height</em>, <em>FCVC</em>. Ci aiuta a capire su cosa si basa il modello.
-    </p>
+        <h5>2. Feature Importance (XGBoost)</h5>
+        <p>
+            Grafico generato da XGBoost che evidenzia le variabili più influenti nella predizione, 
+            come <em>Weight</em>, <em>Height</em>, <em>FCVC</em>. Ci aiuta a capire su cosa si basa il modello.
+        </p>
 
-    <h5>3. Confronto Accuracy Train/Validation</h5>
-    <p>
-        Un grafico che mostra la precisione del modello sui dati di training rispetto a quelli di validazione, 
-        utile per individuare overfitting o underfitting.
-    </p>
+        <h5>3. Confronto Accuracy Train/Validation</h5>
+        <p>
+            Un grafico che mostra la precisione del modello sui dati di training rispetto a quelli di validazione, 
+            utile per individuare overfitting o underfitting.
+        </p>
+    </div>
+
+    <div class="lang-en" style="display: none;">
+        <h3>Data Visualization</h3>
+        <p>Here are three visual representations of the model training and data analysis process:</p>
+
+        <h5>1. Class Distribution</h5>
+        <p>
+            A bar chart showing how many individuals fall into each weight category, from "Insufficient Weight" to "Obesity Type III".
+            Useful for understanding potential dataset imbalance.
+        </p>
+
+        <h5>2. Feature Importance (XGBoost)</h5>
+        <p>
+            A chart showing the most influential variables in the prediction, such as <em>Weight</em>, <em>Height</em>, or <em>FCVC</em>. 
+            It helps to explain how the model makes decisions.
+        </p>
+
+        <h5>3. Accuracy Comparison: Train vs Validation</h5>
+        <p>
+            A graph that compares the model's accuracy on training and validation datasets, useful for spotting overfitting or underfitting.
+        </p>
+    </div>
+
+
+    <img src="{{ url_for('static', filename='feature_importance.png') }}" class="img-fluid mb-3" alt="Feature Importance">
+    <img src="{{ url_for('static', filename='class_distribution.png') }}" class="img-fluid" alt="Distribuzione Classi">
 </div>
-
-<div class="lang-en" style="display: none;">
-    <h3>Data Visualization</h3>
-    <p>Here are three visual representations of the model training and data analysis process:</p>
-
-    <h5>1. Class Distribution</h5>
-    <p>
-        A bar chart showing how many individuals fall into each weight category, from "Insufficient Weight" to "Obesity Type III".
-        Useful for understanding potential dataset imbalance.
-    </p>
-
-    <h5>2. Feature Importance (XGBoost)</h5>
-    <p>
-        A chart showing the most influential variables in the prediction, such as <em>Weight</em>, <em>Height</em>, or <em>FCVC</em>. 
-        It helps to explain how the model makes decisions.
-    </p>
-
-    <h5>3. Accuracy Comparison: Train vs Validation</h5>
-    <p>
-        A graph that compares the model's accuracy on training and validation datasets, useful for spotting overfitting or underfitting.
-    </p>
-</div>
-
-
-<img src="{{ url_for('static', filename='feature_importance.png') }}" class="img-fluid mb-3" alt="Feature Importance">
-<img src="{{ url_for('static', filename='class_distribution.png') }}" class="img-fluid" alt="Distribuzione Classi">
 {% endblock %}

@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>{{ title or "Obesity Predictor" }}</title>
+        <link rel="icon" type="image/png" href="/static/Img/Site/obesity.png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='BackGround.css') }}">
     </head>
 
     <body class="d-flex flex-column min-vh-100">
@@ -42,7 +42,7 @@
         
         
         <!-- Contenuto -->
-        <div  class="mini-container container py-4">
+        <div>
             {% block content %}{% endblock %}
         </div>
 
@@ -64,35 +64,40 @@
                 </div>
             </div>
         </footer>
-
+        
 
         <script>
             function toggleLanguage() {
-                const currentLang = localStorage.getItem('lang') || 'it';
-                const newLang = currentLang === 'it' ? 'en' : 'it';
-
-                // Applica la nuova lingua
-                applyLanguage(newLang);
-
-                // Salva lo stato aggiornato
-                localStorage.setItem('lang', newLang);
+                const lang = document.getElementById("option1").checked ? "en" : "it";
+                localStorage.setItem("lang", lang);
+                applyLanguage(lang);
             }
 
             function applyLanguage(lang) {
+                // Mostra/nasconde contenuto
                 document.querySelectorAll(".lang-it").forEach(el => {
                     el.style.display = (lang === 'it') ? "block" : "none";
                 });
-
                 document.querySelectorAll(".lang-en").forEach(el => {
                     el.style.display = (lang === 'en') ? "block" : "none";
                 });
+
+                // Aggiorna stato switch
+                if (lang === "en") {
+                    document.getElementById("option1").checked = true;
+                } else {
+                    document.getElementById("option2").checked = true;
+                }
             }
 
+            // Inizializza lingua al caricamento
             document.addEventListener("DOMContentLoaded", () => {
-                const savedLang = localStorage.getItem('lang') || 'it';
+                const savedLang = localStorage.getItem("lang") || "it";
                 applyLanguage(savedLang);
             });
+
         </script>
+
 
 
 
