@@ -18,7 +18,7 @@ Questa web app consente di stimare il livello di obesità di un individuo sulla 
 ## 📁 Struttura del progetto
 
 # PredizioneDellObesita
-'''
+```
 PredizioneDellObesita/
 │
 ├── DatiCsv/ # Dataset originale + previsioni salvate
@@ -54,7 +54,7 @@ PredizioneDellObesita/
 ├── prevObesita.py # Script di training e salvataggio modello
 ├── cleanerdata.ipynb # Notebook per analisi preliminare dei dati
 └── README.md # Questo file
-'''
+```
 
 ---
 
