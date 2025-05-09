@@ -191,6 +191,7 @@ if __name__ == "__main__":
     # Salvataggio
     scaler = StandardScaler()
     scaler.fit(X_train)  # Fit con dati di training
+    
     joblib.dump(model, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/model_xgb.pkl')
     joblib.dump(feature_names, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/feature_names.pkl')
     with open('C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/class_map.json', 'w') as f:
