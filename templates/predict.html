@@ -1,9 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>Strumento di Predizione</h3>
-<p>
-    Inserisci i tuoi dati personali nel form sottostante per ottenere una previsione del tuo livello di obesità.
-    Il modello è stato addestrato su dati reali e considera fattori demografici, abitudini alimentari e attività fisica.
-</p>
+<div class="lang-it">
+    <h3>Strumento di Predizione</h3>
+    <p>
+        In questa sezione puoi testare il nostro modello direttamente online.
+        Ti verrà chiesto di compilare un breve form con alcune informazioni.
+    </p>
+    <p>
+        Una volta inviato il modulo, i dati verranno automaticamente convertiti, normalizzati e processati. 
+        Il sistema effettuerà quindi una predizione classificando il tuo livello di obesità.
+    </p>
+    <p class="text-muted"><em>
+        ⚠️ Questo strumento ha uno scopo puramente didattico e non fornisce diagnosi mediche.
+    </em></p>
+</div>
+
+<div class="lang-en" style="display: none;">
+    <h3>Prediction Tool</h3>
+    <p>
+        In this section, you can test our model live by filling out a short form with information,
+    </p>
+    <p>
+        Once submitted, your data is automatically converted, scaled, and processed. 
+        The system will then return your obesity level classification.
+    </p>
+    <p class="text-muted"><em>
+        ⚠️ This tool is for educational purposes only and does not provide medical diagnoses.
+    </em></p>
+</div>
+
 {% include "form.html" %}
 {% endblock %}

@@ -17,10 +17,7 @@ body::before {
   width: 100%;
   height: 100%;
   background-color: #e5e5f7;
-  opacity: 0.3;
-  background-size: 10px 10px;
-  background-image: repeating-linear-gradient(45deg, #45aaf7 0,
-                                              #45aaf7 1px, #e5e5f7 0, #e5e5f7 50%);
+  background-image: linear-gradient(to right bottom, #007aff, #009cff, #00b4f4, #00c6d1, #02d3ae);
   z-index: -1;
   opacity: 1;  
 }
@@ -59,7 +56,7 @@ h2, h3 {
 }
 
 .navbar {
-  background: linear-gradient(to right, #45aaf7, #256d85);
+  background-image: linear-gradient(to top, #67ff95, #00d9c1, #00acdd, #007bd5, #0744a3);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   padding-top: 10px;
   padding-bottom: 10px;
@@ -113,4 +110,64 @@ button.btn-primary {
     font-style: italic;
     margin-bottom: 10px;
     
+}
+
+ /* Bottone linguia */
+.filter-switch {
+    border: 2px solid #ffc000;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 25px; /* Reduced height */
+    width: 200px; /* Reduced width */
+    overflow: hidden;
+}
+.filter-switch input {
+    display: none;
+}
+.filter-switch label {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.5s;
+    font-weight: 500;
+    font-size: 9px; /* Reduced font size */
+}
+.filter-switch .background {
+    position: absolute;
+    width: 49%;
+    height: 17px; /* Reduced height */
+    background-color: #ffc000;
+    top: 2px; /* Adjusted position */
+    left: 2px; /* Adjusted position */
+    border-radius: 30px;
+    transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#option2:checked ~ .background {
+    left: 50%;
+}
+#option1:checked + label[for="option1"] {
+    color: #212121;
+    font-weight: bold;
+}
+#option2:checked + label[for="option2"] {
+    color: #212121;
+    font-weight: bold;
+}
+#option1:not(:checked) + label[for="option1"],
+#option2:not(:checked) + label[for="option2"] {
+    color: #7d7d7d;
+}
+
+
+
+
+.content-en{
+    display: none;
 }

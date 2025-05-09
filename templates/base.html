@@ -1,43 +1,90 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title or "Obesity Predictor" }}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='BackGround.css') }}">
-</head>
-<body class="d-flex flex-column min-vh-100">
-    
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand mx-auto" href="#">Predizione Obesità</a>
-        </div>
-        <div class="container justify-content-center">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('predict') }}">Predict</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('data') }}">Data</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-    <!-- Contenuto -->
-    <div  class="mini-container container py-4">
-        {% block content %}{% endblock %}
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ title or "Obesity Predictor" }}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='BackGround.css') }}">
+    </head>
 
-  <!-- FOOTER -->
-  <footer style = "margin-top: 20px;" class="footer mt-auto py-3" >
-      <div class="text-center">
-          <p class="mb-2 disclaimer">Questo sito è stato realizzato a scopo didattico e non fornisce diagnosi mediche. Utilizzare con responsabilità.</p>
-          <div class="d-flex justify-content-center gap-3">
-              <a href="https://linktr.ee/CiroMaresca" target="_blank" class="btn btn-outline-light btn-sm">Info Ciro Maresca</a>
-              <a href="https://linkedin.com/in/mio-compagno" target="_blank" class="btn btn-outline-light btn-sm">Info Filippo Giorgio Rondó</a>
-          </div>
-      </div>
-  </footer>
+    <body class="d-flex flex-column min-vh-100">
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+            <div class="container">
+                <div class="content-it"> 
+                    <a class="navbar-brand mx-auto" href="#">Predizione Obesità</a>
+                </div>
+                <div class="content-en" style="display: none;"> 
+                    <a class="navbar-brand mx-auto" href="#">Obesity Prediction</a>
+                </div>
+                
+            </div>
+            <div class="container justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('predict') }}">Predict</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('data') }}">Data</a></li>
+                </ul>
+            </div>
+            <!-- Pulsante lingua -->
+            <div id="firstFilter" class="filter-switch">
+                <input checked="" id="option1" name="options" type="radio" onchange="toggleLanguage()" />
+                <label class="option" for="option1">ITA</label>
+                <input id="option2" name="options" type="radio" onchange="toggleLanguage()" />
+                <label class="option" for="option2">EN</label>
+                <span class="background"></span>
+            </div>
 
-</body>
+        </nav>
+        
+        
+        
+        <!-- Contenuto -->
+        <div  class="mini-container container py-4">
+            {% block content %}{% endblock %}
+        </div>
+
+        
+
+        <!-- FOOTER -->
+        <footer style = "margin-top: 20px;" class="footer mt-auto py-3" >
+            <div class="text-center">
+                <div class="content-it"> 
+                    <p class="mb-2 disclaimer">Questo sito è stato realizzato a scopo didattico e non fornisce diagnosi mediche. Utilizzare con responsabilità.</p>
+                </div>
+                <div class="content-en" style="display: none;"> 
+                    <p class="mb-2 disclaimer">This website is for educational purposes only and is not intended to provide medical diagnoses. Use at your own discretion.</p>
+                </div>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://linktr.ee/CiroMaresca" target="_blank" class="btn btn-outline-light btn-sm">Info Ciro Maresca</a>
+                    <a href="https://linkedin.com/in/mio-compagno" target="_blank" class="btn btn-outline-light btn-sm">Info Filippo Giorgio Rondó</a>
+                </div>
+            </div>
+        </footer>
+
+
+        <script>
+            function toggleLanguage() {
+                const currentLang = localStorage.getItem('lang') || 'it';
+                const nextLang = currentLang === 'it' ? 'en' : 'it';
+                localStorage.setItem('lang', nextLang);
+                applyLanguage(nextLang);
+            }
+
+            function applyLanguage(lang) {
+                document.querySelectorAll(".lang-it").forEach(el => el.style.display = (lang === 'it' ? "block" : "none"));
+                document.querySelectorAll(".lang-en").forEach(el => el.style.display = (lang === 'en' ? "block" : "none"));
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const savedLang = localStorage.getItem('lang') || 'it';
+                applyLanguage(savedLang);
+            });
+        </script>
+
+
+
+    </body>
 </html>
