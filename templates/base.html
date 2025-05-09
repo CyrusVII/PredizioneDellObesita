@@ -13,10 +13,10 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark mb-4">
             <div class="container">
-                <div class="content-it"> 
+                <div class="lang-it"> 
                     <a class="navbar-brand mx-auto" href="#">Predizione Obesità</a>
                 </div>
-                <div class="content-en" style="display: none;"> 
+                <div class="lang-en" style="display: none;"> 
                     <a class="navbar-brand mx-auto" href="#">Obesity Prediction</a>
                 </div>
                 
@@ -31,9 +31,9 @@
             <!-- Pulsante lingua -->
             <div id="firstFilter" class="filter-switch">
                 <input checked="" id="option1" name="options" type="radio" onchange="toggleLanguage()" />
-                <label class="option" for="option1">ITA</label>
+                <label class="option" for="option1">EN</label>
                 <input id="option2" name="options" type="radio" onchange="toggleLanguage()" />
-                <label class="option" for="option2">EN</label>
+                <label class="option" for="option2">ITA</label>
                 <span class="background"></span>
             </div>
 
@@ -51,15 +51,16 @@
         <!-- FOOTER -->
         <footer style = "margin-top: 20px;" class="footer mt-auto py-3" >
             <div class="text-center">
-                <div class="content-it"> 
+                <div class="lang-it"> 
                     <p class="mb-2 disclaimer">Questo sito è stato realizzato a scopo didattico e non fornisce diagnosi mediche. Utilizzare con responsabilità.</p>
                 </div>
-                <div class="content-en" style="display: none;"> 
+                <div class="lang-en" > 
                     <p class="mb-2 disclaimer">This website is for educational purposes only and is not intended to provide medical diagnoses. Use at your own discretion.</p>
                 </div>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="https://linktr.ee/CiroMaresca" target="_blank" class="btn btn-outline-light btn-sm">Info Ciro Maresca</a>
                     <a href="https://linkedin.com/in/mio-compagno" target="_blank" class="btn btn-outline-light btn-sm">Info Filippo Giorgio Rondó</a>
+                    <a href="https://github.com/CyrusVII/PredizioneDellObesita/tree/main" target="_blank" class="btn btn-outline-light btn-sm">Project repo</a>
                 </div>
             </div>
         </footer>
@@ -68,14 +69,23 @@
         <script>
             function toggleLanguage() {
                 const currentLang = localStorage.getItem('lang') || 'it';
-                const nextLang = currentLang === 'it' ? 'en' : 'it';
-                localStorage.setItem('lang', nextLang);
-                applyLanguage(nextLang);
+                const newLang = currentLang === 'it' ? 'en' : 'it';
+
+                // Applica la nuova lingua
+                applyLanguage(newLang);
+
+                // Salva lo stato aggiornato
+                localStorage.setItem('lang', newLang);
             }
 
             function applyLanguage(lang) {
-                document.querySelectorAll(".lang-it").forEach(el => el.style.display = (lang === 'it' ? "block" : "none"));
-                document.querySelectorAll(".lang-en").forEach(el => el.style.display = (lang === 'en' ? "block" : "none"));
+                document.querySelectorAll(".lang-it").forEach(el => {
+                    el.style.display = (lang === 'it') ? "block" : "none";
+                });
+
+                document.querySelectorAll(".lang-en").forEach(el => {
+                    el.style.display = (lang === 'en') ? "block" : "none";
+                });
             }
 
             document.addEventListener("DOMContentLoaded", () => {
@@ -83,6 +93,7 @@
                 applyLanguage(savedLang);
             });
         </script>
+
 
 
 
