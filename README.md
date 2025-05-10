@@ -76,7 +76,7 @@ python app.py
 
 ## 👨‍💻 Authors
 
-- [Ciro Maresca](https://linktr.ee/CiroMaresca)
+- <a href="https://linktr.ee/CiroMaresca" target="_blank">Ciro Maresca</a>
 
 - Filippo Giorgio Rondó
 
