@@ -1,0 +1,175 @@
+/* static/style.css */
+
+body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    z-index: 0;
+}
+
+/* Sfondo a tutta pagina */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: #5c5c5c;
+    background: linear-gradient(0deg, rgba(92, 92, 92, 1) 0%, rgba(255, 255, 255, 1) 100%); 
+    z-index: -1;
+    opacity: 1;  
+}
+
+.container {
+	max-width: 1000px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	
+}
+
+.mini-container {
+    background-color: #141414;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    color: white;
+}
+
+h2, h3 {
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.alert-info {
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: #e0f0ff;
+    color: #0c5460;
+}
+
+.navbar {
+    background: #5c5c5c;
+    background: linear-gradient(0deg, rgba(92, 92, 92, 1) 0%, rgba(20, 20, 20, 1) 100%); 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #fff !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.navbar .nav-link:hover {
+    color: #ffe082 !important; 
+    text-decoration: none;
+}
+
+
+button.btn-primary {
+    background-color: #ffffff;
+    border: none;
+    font-weight: 500;
+	max-width: 300px;
+	color: black;
+}
+
+.footer {
+    background: #5c5c5c;
+    background: linear-gradient(0deg, rgba(92, 92, 92, 1) 0%, rgba(20, 20, 20, 1) 100%);
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer .btn {
+    border-color: #fff;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.footer .btn:hover {
+    background-color: #ffffff;
+    color: #256d85;
+}
+
+.disclaimer {
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 10px;
+    
+}
+
+ /* Bottone linguia */
+.filter-switch {
+    border: 2px solid #ffc000;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 25px; /* Reduced height */
+    width: 200px; /* Reduced width */
+    overflow: hidden;
+}
+.filter-switch input {
+    display: none;
+}
+.filter-switch label {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.5s;
+    font-weight: 500;
+    font-size: 9px; /* Reduced font size */
+}
+.filter-switch .background {
+    position: absolute;
+    width: 49%;
+    height: 17px; /* Reduced height */
+    background-color: #ffc000;
+    top: 2px; /* Adjusted position */
+    left: 2px; /* Adjusted position */
+    border-radius: 30px;
+    transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#option2:checked ~ .background {
+    left: 50%;
+}
+#option1:checked + label[for="option1"] {
+    color: #212121;
+    font-weight: bold;
+}
+#option2:checked + label[for="option2"] {
+    color: #212121;
+    font-weight: bold;
+}
+#option1:not(:checked) + label[for="option1"],
+#option2:not(:checked) + label[for="option2"] {
+    color: #7d7d7d;
+}
+
+
+
+

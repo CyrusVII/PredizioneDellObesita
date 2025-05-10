@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mini-container container py-4"> 
+
+    <div class="lang-it">
+        <h3>📊 Presentazione - Analisi dei Dati per la Predizione dell'Obesità</h3>
+        <p> 
+            Nel processo di sviluppo del nostro sistema di predizione dell’obesità, 
+            abbiamo condotto un’approfondita analisi esplorativa dei dati. Di seguito vengono mostrati alcuni grafici 
+            significativi che ci hanno aiutato a comprendere meglio le tendenze presenti nel dataset e a selezionare le 
+            variabili più rilevanti per il modello predittivo.
+        </p>
+    </div>
+
+    <div class="lang-en" style="display: none;">
+        <h3>📊 Presentation - Data Analysis for Obesity Prediction</h3>
+        <p>
+            As part of building our obesity prediction system, we performed an in-depth exploratory data analysis. Below are some 
+            key visualizations that helped us understand 
+            trends in the dataset and identify the most relevant features for the predictive model.
+        </p>
+    </div>
+
+</div>
+
+<div class="mini-container container py-4"> 
+
+    <div class="lang-it">
+        <h3>🧮 1. Matrice di Correlazione delle Variabili</h3>
+        <p>
+            Questa matrice di correlazione evidenzia le relazioni tra le diverse variabili del dataset. 
+            Valori vicini a 1 o -1 indicano una forte correlazione positiva o negativa. Ad esempio, 
+            si nota una forte correlazione positiva tra “HealthyDietScore” e “FCVC” (0.73), 
+            e una correlazione negativa tra “HealthyDietScore” e “OvereatingScore” (-0.22), 
+            confermando che chi segue una dieta sana tende a mangiare in modo più equilibrato.
+        </p>
+    </div>
+
+    <div class="lang-en">
+        <h3>🧮 1. Feature Correlation Matrix</h3>
+        <p>
+            This correlation matrix shows the relationships between the dataset's features. Values close to 1 or -1 
+            indicate strong positive or negative correlations. For instance, there is a strong positive correlation between “HealthyDietScore” and “FCVC” (0.73), 
+            and a negative correlation between “HealthyDietScore” and “OvereatingScore” (-0.22), 
+            confirming that a healthier diet is linked to more balanced eating habits.
+        </p>
+    </div>
+
+    <img src="/static/Img/Grafici/corr.png" alt="Grafico Correlazione" width="950" height="800">
+
+</div>
+
+<div class="mini-container container py-4"> 
+
+    <div class="lang-it">
+        <h3>📈 2. Distribuzione delle Categorie di Rischio Obesità </h3>
+        <p>
+            Questo grafico a barre mostra la distribuzione delle varie categorie di rischio legate all’obesità presenti nel dataset. 
+            Le categorie più rappresentate sono "Obesity_Type_III" e "Obesity_Type_II", seguite dal peso normale. 
+            Questa distribuzione evidenzia la necessità di una maggiore attenzione ai casi più gravi di obesità nella popolazione analizzata.
+        </p>
+    </div>
+
+    <div class="lang-en" style="display: none;">
+        <h3>📈 2. Distribution of Obesity Risk Categories </h3>
+        <p>
+            This bar chart shows the distribution of different obesity risk categories in the dataset. 
+            The most common groups are "Obesity_Type_III" and "Obesity_Type_II", followed by normal weight. 
+            This distribution highlights the significant presence of severe obesity cases in the analyzed population.
+        </p>
+    </div>
+
+    <img src="/static/Img/Grafici/risk.png" alt="Grafico Correlazione" style = "object-fit: cover;">
+</div>
+
+<div class="mini-container container py-4"> 
+
+    <div class="lang-it">
+        <h3>🥦 3. Consumo di Verdure (FCVC) per Categoria Obesità </h3>
+        <p>
+            Il grafico a violino visualizza la frequenza del consumo di verdure (FCVC) per ciascuna categoria di obesità. 
+            Si nota che il consumo di verdure tende a essere più elevato tra i soggetti con peso normale e insufficiente, 
+            mentre è generalmente più basso nei soggetti con livelli di obesità più alti. 
+            Ciò suggerisce una correlazione inversa tra consumo di verdure e rischio di obesità.
+        </p>
+    </div>
+
+    <div class="lang-en" style="display: none;">
+        <h3>🥦 3. Vegetable Consumption (FCVC) by Obesity Category </h3>
+        <p>
+            The violin plot illustrates the frequency of vegetable consumption (FCVC) across obesity categories. 
+            It shows that people with normal or insufficient weight tend to consume vegetables more frequently, 
+            while those in higher obesity categories generally consume them less. This suggests an inverse correlation between vegetable intake and obesity risk.
+        </p>
+    </div>
+
+    <img src="/static/Img/Grafici/veg.png" alt="Grafico Correlazione" style = "object-fit: cover;">
+
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ title or "Obesity Predictor" }}</title>
+        <link rel="icon" type="image/png" href="/static/Img/Site/obesity.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <body class="d-flex flex-column min-vh-100">
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+            <div class="container">
+                <div class="lang-it"> 
+                    <a class="navbar-brand mx-auto" href="#">Predizione Obesità</a>
+                </div>
+                <div class="lang-en" style="display: none;"> 
+                    <a class="navbar-brand mx-auto" href="#">Obesity Prediction</a>
+                </div>
+                
+            </div>
+            <div class="container justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('predict') }}">Predict</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('data') }}">Data</a></li>
+                </ul>
+            </div>
+            <!-- Pulsante lingua -->
+            <div id="firstFilter" class="filter-switch">
+                <input checked="" id="option1" name="options" type="radio" onchange="toggleLanguage()" />
+                <label class="option" for="option1">EN</label>
+                <input id="option2" name="options" type="radio" onchange="toggleLanguage()" />
+                <label class="option" for="option2">ITA</label>
+                <span class="background"></span>
+            </div>
+
+        </nav>
+        
+        
+        
+        <!-- Contenuto -->
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+
+        
+
+        <!-- FOOTER -->
+        <footer style = "margin-top: 20px;" class="footer mt-auto py-3" >
+            <div class="text-center">
+                <div class="lang-it"> 
+                    <p class="mb-2 disclaimer">Questo sito è stato realizzato a scopo didattico e non fornisce diagnosi mediche. Utilizzare con responsabilità.</p>
+                </div>
+                <div class="lang-en" > 
+                    <p class="mb-2 disclaimer">This website is for educational purposes only and is not intended to provide medical diagnoses. Use at your own discretion.</p>
+                </div>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://linktr.ee/CiroMaresca" target="_blank" class="btn btn-outline-light btn-sm">Info Ciro Maresca</a>
+                    <a href="https://linkedin.com/in/mio-compagno" target="_blank" class="btn btn-outline-light btn-sm">Info Filippo Giorgio Rondó</a>
+                    <a href="https://github.com/CyrusVII/PredizioneDellObesita/tree/main" target="_blank" class="btn btn-outline-light btn-sm">Project repo</a>
+                </div>
+            </div>
+        </footer>
+        
+
+        <script>
+            function toggleLanguage() {
+                const lang = document.getElementById("option1").checked ? "en" : "it";
+                localStorage.setItem("lang", lang);
+                applyLanguage(lang);
+            }
+
+            function applyLanguage(lang) {
+                // Mostra/nasconde contenuto
+                document.querySelectorAll(".lang-it").forEach(el => {
+                    el.style.display = (lang === 'it') ? "block" : "none";
+                });
+                document.querySelectorAll(".lang-en").forEach(el => {
+                    el.style.display = (lang === 'en') ? "block" : "none";
+                });
+
+                // Aggiorna stato switch
+                if (lang === "en") {
+                    document.getElementById("option1").checked = true;
+                } else {
+                    document.getElementById("option2").checked = true;
+                }
+            }
+
+            // Inizializza lingua al caricamento
+            document.addEventListener("DOMContentLoaded", () => {
+                const savedLang = localStorage.getItem("lang") || "it";
+                applyLanguage(savedLang);
+            });
+
+        </script>
+
+
+
+
+
+    </body>
+</html>
