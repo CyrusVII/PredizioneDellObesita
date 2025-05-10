@@ -1,53 +1,100 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="mini-container container py-4"> 
+
     <div class="lang-it">
-        <h3>Visualizzazione dei Dati</h3>
-        <p>Ecco tre grafici rappresentativi del processo di modellazione e analisi dei dati:</p>
-
-        <h5>1. Distribuzione delle Classi (Target)</h5>
-        <p>
-            Grafico a barre che mostra la quantità di individui per ciascuna categoria di peso: da "Insufficient Weight" a "Obesity Type III".
-            Utile per evidenziare eventuali squilibri nel dataset.
-        </p>
-
-        <h5>2. Feature Importance (XGBoost)</h5>
-        <p>
-            Grafico generato da XGBoost che evidenzia le variabili più influenti nella predizione, 
-            come <em>Weight</em>, <em>Height</em>, <em>FCVC</em>. Ci aiuta a capire su cosa si basa il modello.
-        </p>
-
-        <h5>3. Confronto Accuracy Train/Validation</h5>
-        <p>
-            Un grafico che mostra la precisione del modello sui dati di training rispetto a quelli di validazione, 
-            utile per individuare overfitting o underfitting.
+        <h3>📊 Presentazione - Analisi dei Dati per la Predizione dell'Obesità</h3>
+        <p> 
+            Nel processo di sviluppo del nostro sistema di predizione dell’obesità, 
+            abbiamo condotto un’approfondita analisi esplorativa dei dati. Di seguito vengono mostrati alcuni grafici 
+            significativi che ci hanno aiutato a comprendere meglio le tendenze presenti nel dataset e a selezionare le 
+            variabili più rilevanti per il modello predittivo.
         </p>
     </div>
 
     <div class="lang-en" style="display: none;">
-        <h3>Data Visualization</h3>
-        <p>Here are three visual representations of the model training and data analysis process:</p>
-
-        <h5>1. Class Distribution</h5>
+        <h3>📊 Presentation - Data Analysis for Obesity Prediction</h3>
         <p>
-            A bar chart showing how many individuals fall into each weight category, from "Insufficient Weight" to "Obesity Type III".
-            Useful for understanding potential dataset imbalance.
-        </p>
-
-        <h5>2. Feature Importance (XGBoost)</h5>
-        <p>
-            A chart showing the most influential variables in the prediction, such as <em>Weight</em>, <em>Height</em>, or <em>FCVC</em>. 
-            It helps to explain how the model makes decisions.
-        </p>
-
-        <h5>3. Accuracy Comparison: Train vs Validation</h5>
-        <p>
-            A graph that compares the model's accuracy on training and validation datasets, useful for spotting overfitting or underfitting.
+            As part of building our obesity prediction system, we performed an in-depth exploratory data analysis. Below are some 
+            key visualizations that helped us understand 
+            trends in the dataset and identify the most relevant features for the predictive model.
         </p>
     </div>
 
+</div>
 
-    <img src="{{ url_for('static', filename='feature_importance.png') }}" class="img-fluid mb-3" alt="Feature Importance">
-    <img src="{{ url_for('static', filename='class_distribution.png') }}" class="img-fluid" alt="Distribuzione Classi">
+<div class="mini-container container py-4"> 
+
+    <div class="lang-it">
+        <h3>🧮 1. Matrice di Correlazione delle Variabili</h3>
+        <p>
+            Questa matrice di correlazione evidenzia le relazioni tra le diverse variabili del dataset. 
+            Valori vicini a 1 o -1 indicano una forte correlazione positiva o negativa. Ad esempio, 
+            si nota una forte correlazione positiva tra “HealthyDietScore” e “FCVC” (0.73), 
+            e una correlazione negativa tra “HealthyDietScore” e “OvereatingScore” (-0.22), 
+            confermando che chi segue una dieta sana tende a mangiare in modo più equilibrato.
+        </p>
+    </div>
+
+    <div class="lang-en">
+        <h3>🧮 1. Feature Correlation Matrix</h3>
+        <p>
+            This correlation matrix shows the relationships between the dataset's features. Values close to 1 or -1 
+            indicate strong positive or negative correlations. For instance, there is a strong positive correlation between “HealthyDietScore” and “FCVC” (0.73), 
+            and a negative correlation between “HealthyDietScore” and “OvereatingScore” (-0.22), 
+            confirming that a healthier diet is linked to more balanced eating habits.
+        </p>
+    </div>
+
+    <img src="/static/Img/Grafici/corr.png" alt="Grafico Correlazione" width="950" height="800">
+
+</div>
+
+<div class="mini-container container py-4"> 
+
+    <div class="lang-it">
+        <h3>📈 2. Distribuzione delle Categorie di Rischio Obesità </h3>
+        <p>
+            Questo grafico a barre mostra la distribuzione delle varie categorie di rischio legate all’obesità presenti nel dataset. 
+            Le categorie più rappresentate sono "Obesity_Type_III" e "Obesity_Type_II", seguite dal peso normale. 
+            Questa distribuzione evidenzia la necessità di una maggiore attenzione ai casi più gravi di obesità nella popolazione analizzata.
+        </p>
+    </div>
+
+    <div class="lang-en" style="display: none;">
+        <h3>📈 2. Distribution of Obesity Risk Categories </h3>
+        <p>
+            This bar chart shows the distribution of different obesity risk categories in the dataset. 
+            The most common groups are "Obesity_Type_III" and "Obesity_Type_II", followed by normal weight. 
+            This distribution highlights the significant presence of severe obesity cases in the analyzed population.
+        </p>
+    </div>
+
+    <img src="/static/Img/Grafici/risk.png" alt="Grafico Correlazione" style = "object-fit: cover;">
+</div>
+
+<div class="mini-container container py-4"> 
+
+    <div class="lang-it">
+        <h3>🥦 3. Consumo di Verdure (FCVC) per Categoria Obesità </h3>
+        <p>
+            Il grafico a violino visualizza la frequenza del consumo di verdure (FCVC) per ciascuna categoria di obesità. 
+            Si nota che il consumo di verdure tende a essere più elevato tra i soggetti con peso normale e insufficiente, 
+            mentre è generalmente più basso nei soggetti con livelli di obesità più alti. 
+            Ciò suggerisce una correlazione inversa tra consumo di verdure e rischio di obesità.
+        </p>
+    </div>
+
+    <div class="lang-en" style="display: none;">
+        <h3>🥦 3. Vegetable Consumption (FCVC) by Obesity Category </h3>
+        <p>
+            The violin plot illustrates the frequency of vegetable consumption (FCVC) across obesity categories. 
+            It shows that people with normal or insufficient weight tend to consume vegetables more frequently, 
+            while those in higher obesity categories generally consume them less. This suggests an inverse correlation between vegetable intake and obesity risk.
+        </p>
+    </div>
+
+    <img src="/static/Img/Grafici/veg.png" alt="Grafico Correlazione" style = "object-fit: cover;">
+
 </div>
 {% endblock %}
