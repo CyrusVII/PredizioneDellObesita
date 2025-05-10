@@ -1,70 +1,64 @@
+# 📚 Project Documentation
 
----
+## 1. General Description
 
-## ✅ 3. Documentazione del progetto
-
-```md
-# 📚 Documentazione del progetto
-
-## 1. Descrizione generale
-
-L'applicazione consente di prevedere il livello di obesità di un utente partendo da dati inseriti manualmente. Il cuore del sistema è un modello XGBoost addestrato su dati reali. Il frontend è stato realizzato con Flask, Bootstrap e Jinja2.
+The application predicts a user's obesity level based on manually entered data. The core of the system is an XGBoost model trained on real-world data. The frontend is built using Flask, Bootstrap, and Jinja2.
 
 ---
 
 ## 2. Dataset
 
-- Fonte: Dataset pubblico sull’obesità
-- Features: 17 variabili (numeriche e categoriche)
-- Target: `NObeyesdad` (7 classi)
+- Source: Public dataset on obesity  
+- Features: 17 variables (numerical and categorical)  
+- Target: `NObeyesdad` (7 classes)
 
 ---
 
-## 3. Pipeline di Pre-processing
+## 3. Pre-processing Pipeline
 
-- Conversione stringhe "yes"/"no" → booleani
-- Encoding con `LabelEncoder` per variabili categoriche
-- Scaling numerico con `StandardScaler`
-- Train-test-validation split con stratificazione
-- Salvataggio oggetti (`model.pkl`, `scaler.pkl`, `encoder.pkl`)
+- Conversion of "yes"/"no" strings → boolean values  
+- Encoding of categorical variables using `LabelEncoder`  
+- Numerical scaling using `StandardScaler`  
+- Train-test-validation split with stratification  
+- Object saving (`model.pkl`, `scaler.pkl`, `encoder.pkl`)
 
 ---
 
-## 4. Modello
+## 4. Model
 
-- Tipo: `XGBoostClassifier`
-- Valutazione: Accuracy, Confusion Matrix, Cross-validation
-- Feature importance visualizzata con grafico
+- Type: `XGBoostClassifier`  
+- Evaluation: Accuracy, Confusion Matrix, Cross-validation  
+- Feature importance visualized through graph
 
 ---
 
 ## 5. Web App (Flask)
 
-- `/`: home page con presentazione
-- `/predict`: form per la predizione
-- `/data`: sezione con grafici e insight
-- Toggle lingua salvato in `localStorage`
-- Layout responsive (Bootstrap)
+- `/`: home page with introduction  
+- `/predict`: prediction form  
+- `/data`: section with charts and insights  
+- Language toggle stored in `localStorage`  
+- Responsive layout (Bootstrap)
 
 ---
 
-## 6. Grafici
+## 6. Charts
 
-- Distribuzione delle classi target
-- Feature importance
-- Confronto accuracy Train vs Validation
+- Distribution of target classes  
+- Feature importance  
+- Accuracy comparison: Train vs Validation
 
 ---
 
-## 7. Requisiti
+## 7. Requirements
 
-- Python ≥ 3.8
+- Python ≥ 3.8  
 - Flask, XGBoost, pandas, scikit-learn
 
 ---
 
 ## 8. Credits
 
-Progetto realizzato da:
-- **Maresca Ciro**
+Project developed by:  
+- **Maresca Ciro**  
 - **Filippo Giorgio Rondó**
