@@ -76,7 +76,7 @@ python app.py
 
 ## 👨‍💻 Authors
 
-- [Ciro Maresca](https://github.com/CyrusVII)
+- [Ciro Maresca](https://linktr.ee/CiroMaresca)
 
 - Filippo Giorgio Rondó
 
