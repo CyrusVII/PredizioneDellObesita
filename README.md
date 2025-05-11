@@ -77,8 +77,8 @@ python app.py
 ## 👨‍💻 Authors
 
 - [Ciro Maresca](https://github.com/CyrusVII)
-
-- Filippo Giorgio Rondó
+  
+- [Filippo Giorgio Rondó](https://linktr.ee/filippogiorgiorondo)
 
 ## ⚠️ Disclaimer
 -- This project is for educational purposes only and is not a substitute for professional medical evaluation.
@@ -168,7 +168,7 @@ python app.py
 
 - [Ciro Maresca](https://github.com/CyrusVII)
 
-- Filippo Giorgio Rondó
+- [Filippo Giorgio Rondó](https://linktr.ee/filippogiorgiorondo)
 
 ## ⚠️ Disclaimer
 
