@@ -12,6 +12,12 @@ This web app estimates an individual's obesity level based on personal data and 
 - 📊 Charts section with dataset and model analysis  
 - 🌐 Multilanguage support (ITA/ENG)  
 - 💾 Scalable architecture with saved models and separated backend/frontend  
+---
+
+## 📸 English 🇬🇧
+Here are some screenshots of the application:
+
+![Screenshot 2025-05-12 150338](https://github.com/user-attachments/assets/709906cd-04e3-4cfe-8498-978dc2e4f63f)
 
 ---
 
@@ -92,7 +98,7 @@ python app.py
 Benvenuti nel progetto **Predizione dell'Obesità**, realizzato da **Maresca Ciro** e **Filippo Giorgio Rondó**!  
 Questa web app consente di stimare il livello di obesità di un individuo sulla base di dati personali e abitudini, utilizzando un modello XGBoost addestrato su un dataset reale.
 
----
+
 
 ## 🚀 Funzionalità
 
@@ -101,7 +107,11 @@ Questa web app consente di stimare il livello di obesità di un individuo sulla 
 - 📊 Sezione grafici con analisi del dataset e modello
 - 🌐 Supporto multilingua (ITA/ENG)
 - 💾 Architettura scalabile con modelli salvati e separazione backend/frontend
+---
+## 📸 Screenshot 
+Ecco alcune schermate dell'applicazione:
 
+![Screenshot 2025-05-12 150338](https://github.com/user-attachments/assets/709906cd-04e3-4cfe-8498-978dc2e4f63f)
 ---
 
 ## 📁 Struttura del progetto
