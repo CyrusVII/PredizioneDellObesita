@@ -14,7 +14,7 @@ This web app estimates an individual's obesity level based on personal data and 
 - 💾 Scalable architecture with saved models and separated backend/frontend  
 ---
 
-## 📸 English 🇬🇧
+## 📸 Screenshot 
 Here are some screenshots of the application:
 
 ![Screenshot 2025-05-12 150338](https://github.com/user-attachments/assets/709906cd-04e3-4cfe-8498-978dc2e4f63f)
