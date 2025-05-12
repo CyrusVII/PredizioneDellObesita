@@ -1,83 +1,109 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="lang-it">
-    <div class="mini-container container py-4"> 
-        <h3>Chi siamo</h3>
+<div class="lang-it mini-container container">
+    <section>
+        <h1>🧠 Obesity Predictor Web App</h1>
         <p>
-            Siamo <strong>Maresca Ciro</strong> e <strong>Filippo Giorgio Rondó</strong>, due studenti appassionati di Data Science e sviluppo web, 
-            che hanno deciso di mettere in pratica le proprie competenze realizzando un sistema intelligente per la predizione del livello di obesità 
-            basato su dati reali e su algoritmi avanzati di Machine Learning.
+            Benvenuti nel progetto <strong>Predizione dell'Obesità</strong>, realizzato da
+            <strong>Maresca Ciro</strong> e <strong>Filippo Giorgio Rondó</strong>!
+            <br>Questa web app consente di stimare il livello di obesità di un individuo sulla base di dati personali e abitudini, utilizzando un modello XGBoost addestrato su un dataset reale.
         </p>
-    </div>
-    
-    <div class="mini-container container py-4"> 
-        <h3>Obiettivo del progetto</h3>
-        <p>
-            L'obiettivo del nostro progetto è quello di creare un'applicazione intuitiva, accessibile da browser, che consenta agli utenti 
-            di ottenere una stima del proprio livello di obesità sulla base di informazioni personali, abitudini alimentari e stile di vita.
-            La nostra soluzione non si limita a restituire una classificazione, ma è pensata per educare l'utente a comprendere meglio i 
-            fattori che influenzano la salute e il peso corporeo.
-        </p>
-    </div>
 
-    <div class="mini-container container py-4"> 
-        <h3>Come funziona</h3>
-        <p>
-            Il sistema sfrutta un modello <strong>XGBoost</strong> addestrato su un dataset pubblico relativo a condizioni di peso, 
-            abitudini alimentari e attività fisica. I dati vengono prima puliti, normalizzati e codificati, dopodiché vengono utilizzati 
-            per addestrare un classificatore multiclasse. La predizione finale assegna l’utente a una delle 7 classi possibili: 
-            da <em>Insufficient Weight</em> fino a <em>Obesity Type III</em>.
-        </p>
-    </div>
+        <hr>
 
-    <div class="mini-container container py-4"> 
-        <h3>L'interfaccia web</h3>
+        <h2>🚀 Funzionalità</h2>
+        <ul>
+            <li>🧾 Inserimento dati utente tramite form interattivo</li>
+            <li>🤖 Predizione automatica del livello di obesità</li>
+            <li>📊 Sezione grafici con analisi del dataset e modello</li>
+            <li>🌐 Supporto multilingua (ITA/ENG)</li>
+            <li>💾 Architettura scalabile con modelli salvati e separazione backend/frontend</li>
+        </ul>
+
+        <h2>🧪 Modello e Dataset</h2>
+            <ul>
+                <li>Modello: <code>XGBoostClassifier</code></li>
+                <li>Feature engineering: encoding categorico, scaler standard</li>
+                <li>Target: classificazione multiclasse (7 classi da "Insufficient Weight" a "Obesity Type III")</li>
+            </ul>
+        <hr>
+
+        <h2>🛠️ Setup rapido</h2>
+            <pre><code>git clone https://github.com/tuo-utente/PredizioneDellObesita.git
+            cd PredizioneDellObesita
+            pip install -r requirements.txt
+            python app.py
+        </code></pre>
+
+        <hr>
+
+        <h2>👨‍💻 Autori</h2>
+        <ul>
+            <li><a href="https://github.com/CyrusVII" target="_blank">Ciro Maresca</a></li>
+            <li><a href="https://linktr.ee/filippogiorgiorondo" target="_blank">Filippo Giorgio Rondó</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>⚠️ Disclaimer</h2>
         <p>
-            Abbiamo costruito un'interfaccia moderna e user-friendly che guida l’utente nell’inserimento dei dati e restituisce in pochi istanti il risultato. 
-            Ogni sezione del sito è stata pensata per accompagnare l’utente nel percorso, dalla presentazione teorica all’analisi dei dati.
+            Questo progetto ha uno scopo puramente didattico e non sostituisce in alcun modo una valutazione medica professionale.
         </p>
-    </div>
+    </section>
 
 </div>
 
-<div class="lang-en" style="display: none;">
+<div class="lang-en mini-container container" style="display: none;">
 
-    <div class="mini-container container py-4"> 
-        <h3>Who We Are</h3>
+    <section>
+        <h1>🧠 Obesity Predictor Web App</h1>
         <p>
-            We are <strong>Maresca Ciro</strong> and <strong>Filippo Giorgio Rondó</strong>, two students passionate about Data Science and web development. 
-            We decided to build an intelligent system to predict obesity levels using real-world data and advanced machine learning algorithms.
+            Welcome to the <strong>Obesity Prediction</strong> project, developed by
+            <strong>Maresca Ciro</strong> and <strong>Filippo Giorgio Rondó</strong>!
+            <br>This web app estimates an individual's obesity level based on personal data and habits, using an XGBoost model trained on real-world data.
         </p>
-    </div>
 
-    <div class="mini-container container py-4"> 
-        <h3>Project Goal</h3>
+        <hr>
+
+        <h2>🚀 Features</h2>
+        <ul>
+            <li>🧾 Interactive user data input form</li>
+            <li>🤖 Automatic prediction of obesity level</li>
+            <li>📊 Charts section with dataset and model analysis</li>
+            <li>🌐 Multilanguage support (ITA/ENG)</li>
+            <li>💾 Scalable architecture with saved models and separated backend/frontend</li>
+        </ul>
+
+        <h2>🧪 Model & Dataset</h2>
+            <ul>
+                <li>Model: <code>XGBoostClassifier</code></li>
+                <li>Feature engineering: categorical encoding, standard scaler</li>
+                <li>Target: multiclass classification (7 classes from "Insufficient Weight" to "Obesity Type III")</li>
+            </ul>
+        <hr>
+
+        <h2>🛠️ Quick Setup</h2>
+            <pre><code>git clone https://github.com/your-user/PredizioneDellObesita.git
+            cd PredizioneDellObesita
+            pip install -r requirements.txt
+            python app.py
+        </code></pre>
+
+        <hr>
+
+            <h2>👨‍💻 Authors</h2>
+            <ul>
+                <li><a href="https://github.com/CyrusVII" target="_blank">Ciro Maresca</a></li>
+                <li><a href="https://linktr.ee/filippogiorgiorondo" target="_blank">Filippo Giorgio Rondó</a></li>
+            </ul>
+
+        <hr>
+
+        <h2>⚠️ Disclaimer</h2>
         <p>
-            Our goal is to develop an intuitive, browser-based application that estimates users’ obesity level based on personal data, 
-            eating habits, and lifestyle. The platform not only provides predictions, but also helps users understand health-related factors.
+            This project is for educational purposes only and is not a substitute for professional medical evaluation.
         </p>
-    </div>
-
-    <div class="mini-container container py-4"> 
-        <h3>How It Works</h3>
-        <p>
-            The system uses an <strong>XGBoost model</strong> trained on a public dataset about weight status, eating patterns, and activity levels.
-            Data is first cleaned, encoded, and scaled before being used to train a multi-class classifier. 
-            The model assigns a prediction into one of 7 classes: from <em>Insufficient Weight</em> to <em>Obesity Type III</em>.
-        </p>
-    </div>
-
-    <div class="mini-container container py-4"> 
-        <h3>The Web Interface</h3>
-        <p>
-            We designed a modern, user-friendly interface that guides users through data entry and delivers instant predictions. 
-            Each section of the site—from project introduction to data analysis—was built with user experience in mind.
-        </p>
-    </div>
-    
-    
-
-
+    </section>
     
 </div>
 
