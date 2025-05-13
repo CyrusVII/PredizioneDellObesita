@@ -76,7 +76,7 @@ def pre_processing(train_path, test_path):
             test_df[col] = le.transform(test_df[col])
             
             # Salva encoder
-            joblib.dump(le, f'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/{col}_encoder.pkl')
+            joblib.dump(le, f'SvModelli/{col}_encoder.pkl')
 
     # === 6. Feature/Target Separation ===
     X = train_df.drop(columns=['id', 'NObeyesdad'])
@@ -94,7 +94,7 @@ def pre_processing(train_path, test_path):
     X_train_scaled = scaler.fit_transform(X_train)  # Fit only on training data
     X_val_scaled = scaler.transform(X_val)
     X_test_scaled = scaler.transform(test_df.drop(columns=['id', 'NObeyesdad'], errors='ignore'))
-    joblib.dump(scaler, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/scaler.pkl')
+    joblib.dump(scaler, 'SvModelli/scaler.pkl')
     
     # === 9. Test Feature Alignment ===
     # Ensure test data has same columns as training data after encoding
