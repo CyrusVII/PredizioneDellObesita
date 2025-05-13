@@ -6,12 +6,12 @@ import json
 from utils import transform_user_input  # Funzione personalizzata per trasformare l'input dell'utente
 
 # Caricamento del modello di machine learning e degli oggetti necessari (scaler, nomi delle feature, mappa delle classi)
-model = joblib.load('C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/model_xgb.pkl')
-scaler = joblib.load('C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/scaler.pkl')
-feature_names = joblib.load('C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/feature_names.pkl')
+model = joblib.load('SvModelli/model_xgb.pkl')
+scaler = joblib.load('SvModelli/scaler.pkl')
+feature_names = joblib.load('SvModelli/feature_names.pkl')
 
 # Caricamento della mappa che associa i numeri di classe alle etichette testuali
-with open('C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/class_map.json') as f:
+with open('SvModelli/class_map.json') as f:
     class_map = {int(v): k for k, v in json.load(f).items()}
 
 # Creazione dell'app Flask, specificando le cartelle per i template e i file statici

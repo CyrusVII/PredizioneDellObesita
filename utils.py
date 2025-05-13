@@ -34,7 +34,7 @@ def transform_user_input(form_data, scaler, feature_names):
     label_cols = ['Gender', 'CAEC', 'CALC', 'MTRANS']
     for col in label_cols:
         if col not in label_encoders:
-            le = joblib.load(f'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/{col}_encoder.pkl')  # li devi salvare tu nel pre-processing
+            le = joblib.load(f'SvModelli/{col}_encoder.pkl')  # li devi salvare tu nel pre-processing
             label_encoders[col] = le
         df[col] = label_encoders[col].transform(df[col].astype(str))
 

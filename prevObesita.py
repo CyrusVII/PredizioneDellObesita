@@ -178,9 +178,9 @@ def modelling(X_train_selected, y_train, X_val, y_val, X_test_selected, test_df,
 # Example usage of functions
 if __name__ == "__main__":
     # Define file paths
-    train_path = "C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/DatiCsv/train.csv"
-    test_path = "C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/DatiCsv/test.csv"
-    output_path = "C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/DatiCsv/predizioni_obesita.csv"
+    train_path = "DatiCsv/train.csv"
+    test_path = "DatiCsv/test.csv"
+    output_path = "DatiCsv/predizioni_obesita.csv"
     
     # Pre-processing
     X_train, y_train, X_val, y_val, X_test, test_df, weight_map,feature_names = pre_processing(train_path, test_path)
@@ -192,9 +192,9 @@ if __name__ == "__main__":
     scaler = StandardScaler()
     scaler.fit(X_train)  # Fit con dati di training
     
-    joblib.dump(model, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/model_xgb.pkl')
-    joblib.dump(feature_names, 'C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/feature_names.pkl')
-    with open('C:/Users/Ciro/Desktop/CorsoPython/pythonProgettiGruppo/PredizioneDellObesita/SvModelli/class_map.json', 'w') as f:
+    joblib.dump(model, 'SvModelli/model_xgb.pkl')
+    joblib.dump(feature_names, 'SvModelli/feature_names.pkl')
+    with open('SvModelli/class_map.json', 'w') as f:
         json.dump({str(k): v for k, v in weight_map.items()}, f)
         
     print("Process succesfully completed!")
